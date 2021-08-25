@@ -18,7 +18,7 @@ const useStyles = makeStyles({
     }
 });
 
-const RepositoryList = ({ searchTerm }) => {
+const RepositoryList = () => {
     const classes = useStyles();
     const { data, loading, error } = useQuery(SEARCH_FOR_REPOS);
     console.log(data);
@@ -42,8 +42,9 @@ const RepositoryList = ({ searchTerm }) => {
             </Typography>
         )
     }
+    console.log("data", data);
     if(!data) return null;
-    return data && data.search.edges.map(({node}) => {
+    return data.search.edges.map(({node}) => {
        return  <Repository repo={node}/>
     });
 };
